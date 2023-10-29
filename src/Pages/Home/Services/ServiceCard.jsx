@@ -1,10 +1,11 @@
 
 import PropTypes from 'prop-types';
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 const ServiceCard = ({ service }) => {
 
-      const { title, price, img } = service;
+      const { _id, title, price, img } = service;
 
       return (
             <div className=" bg-base-100 border rounded-lg">
@@ -15,7 +16,9 @@ const ServiceCard = ({ service }) => {
                         <h2 className="card-title mb-4">{title}</h2>
                         <div className="card-actions flex justify-between items-center">
                               <span className='text-[#FF3811] text-xl font-semibold'>Price: ${price}</span>
-                              <span><AiOutlineArrowRight className='text-[#FF3811] text-2xl'></AiOutlineArrowRight></span>
+                              <Link to={`/booking/${_id}`}>
+                                    <span><AiOutlineArrowRight className='text-[#FF3811] text-2xl'></AiOutlineArrowRight></span>
+                              </Link>
                         </div>
                   </div>
             </div>

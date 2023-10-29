@@ -4,12 +4,15 @@ import image from '../../../public/assets/images/login/login.svg'
 import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 import { AuthContent } from '../../Provider/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Login = () => {
 
       const { logIn } = useContext(AuthContent);
+      const location = useLocation();
+      const navigate = useNavigate();
 
       const handleLogIn = (e) => {
             e.preventDefault();
@@ -29,7 +32,19 @@ const Login = () => {
             logIn(email, password)
                   .then(result => {
                         toast.success('You Successfully Logged in')
-                        form.reset();
+                        // form.reset();
+                        const user = { email }
+
+                        // access token
+                        axios.post('http://localhost:5001/jwt', user, {
+                              withCredentials: true
+                        })
+                              .then(data => {
+                                    console.log(data.data);
+                                    if (data.data.success) {
+                                          navigate(location.state ? location.state : '/')
+                                    }
+                              })
                   })
                   .catch(error => {
                         console.log(error.message);

@@ -71,6 +71,19 @@ const Navbar = () => {
                         Login
                   </NavLink>
             </li>
+            {
+                  user &&
+                  <li>
+                        <NavLink
+                              to="/myBookings"
+                              className={({ isActive }) =>
+                                    isActive ? "text-[#FF3811] text-lg font-semibold border-b-2 border-[#FF3811]" : "text-lg font-semibold text-[#444]"
+                              }
+                        >
+                              My Bookings
+                        </NavLink>
+                  </li>
+            }
 
       </div>
 
@@ -110,7 +123,7 @@ const Navbar = () => {
                                                       <img src={user.photoURL} />
                                                 </div>
                                           </label>
-                                          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                          <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box ">
                                                 <li className='text-[#FF3811]'>{user.displayName}</li>
                                                 <li className='text-[#FF3811]'>{user.email}</li>
                                                 <button onClick={handleLogOut} className="mt-2 rounded-md  text-[#FF3811] hover:text-white hover:bg-[#FF3811] border border-[#FF3811]">Logout</button>
