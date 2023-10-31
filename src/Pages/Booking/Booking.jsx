@@ -29,7 +29,7 @@ const Booking = () => {
                   img
             }
 
-            fetch('http://localhost:5001/bookings', {
+            fetch('https://car-doctor-server-liart-zeta.vercel.app/bookings', {
                   method: 'POST',
                   headers: {
                         'content-type': 'application/json'

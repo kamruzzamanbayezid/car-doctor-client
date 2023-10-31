@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContent } from "../../Provider/AuthProvider/AuthProvider";
 import image from '../../../public/assets/images/checkout/checkout.png'
@@ -19,7 +18,7 @@ const BookingsDetails = () => {
                         setBookings(res.data);
                   })
 
-            // axios.get(`http://localhost:5001/bookings?email=${user.email}`, {
+            // axios.get(`https://car-doctor-server-liart-zeta.vercel.app/bookings?email=${user.email}`, {
             //       withCredentials: true
             // })
             //       .then(data => setBookings(data.data))
@@ -36,7 +35,7 @@ const BookingsDetails = () => {
                   confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                   if (result.isConfirmed) {
-                        fetch(`http://localhost:5001/bookings/${id}`, {
+                        fetch(`https://car-doctor-server-liart-zeta.vercel.app/bookings/${id}`, {
                               method: 'DELETE'
                         })
                               .then(res => res.json())
@@ -58,7 +57,7 @@ const BookingsDetails = () => {
       }
 
       const handleUpdate = id => {
-            fetch(`http://localhost:5001/bookings/${id}`, {
+            fetch(`https://car-doctor-server-liart-zeta.vercel.app/bookings/${id}`, {
                   method: 'PATCH',
                   headers: {
                         'content-type': 'application/json'

@@ -58,17 +58,17 @@ const AuthProvider = ({ children }) => {
                   const loggedUser = { email: currentUser?.email || user?.email }
 
                   setUser(currentUser);
-                  console.log(currentUser);
+                  console.log('authCurr', currentUser);
                   setLoading(false);
 
                   if (currentUser) {
-                        axios.post('http://localhost:5001/jwt', loggedUser, { withCredentials: true })
+                        axios.post('https://car-doctor-server-liart-zeta.vercel.app/jwt', loggedUser, { withCredentials: true })
                               .then(res => {
                                     console.log('user logged in', res.data);
                               })
                   }
                   else {
-                        axios.post('http://localhost:5001/logout', loggedUser, { withCredentials: true })
+                        axios.post('https://car-doctor-server-liart-zeta.vercel.app/logout', loggedUser, { withCredentials: true })
                               .then(res => {
                                     console.log('user logged out', res.data);
                               })
