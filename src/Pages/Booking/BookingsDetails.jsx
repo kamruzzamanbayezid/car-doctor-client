@@ -3,18 +3,27 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContent } from "../../Provider/AuthProvider/AuthProvider";
 import image from '../../../public/assets/images/checkout/checkout.png'
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const BookingsDetails = () => {
 
       const { user } = useContext(AuthContent);
       const [bookings, setBookings] = useState([]);
 
+      const axiosSecure = useAxiosSecure();
+
       useEffect(() => {
-            axios.get(`http://localhost:5001/bookings?email=${user.email}`, {
-                  withCredentials: true
-            })
-                  .then(data => setBookings(data.data))
-      }, [user.email])
+
+            axiosSecure.get(`/bookings?email=${user.email}`)
+                  .then(res => {
+                        setBookings(res.data);
+                  })
+
+            // axios.get(`http://localhost:5001/bookings?email=${user.email}`, {
+            //       withCredentials: true
+            // })
+            //       .then(data => setBookings(data.data))
+      }, [user.email, axiosSecure])
 
       const handleDelete = id => {
             Swal.fire({

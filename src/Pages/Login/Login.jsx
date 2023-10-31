@@ -5,7 +5,6 @@ import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 import { AuthContent } from '../../Provider/AuthProvider/AuthProvider';
 import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 
 const Login = () => {
@@ -32,19 +31,7 @@ const Login = () => {
             logIn(email, password)
                   .then(result => {
                         toast.success('You Successfully Logged in')
-                        // form.reset();
-                        const user = { email }
-
-                        // access token
-                        axios.post('http://localhost:5001/jwt', user, {
-                              withCredentials: true
-                        })
-                              .then(data => {
-                                    console.log(data.data);
-                                    if (data.data.success) {
-                                          navigate(location.state ? location.state : '/')
-                                    }
-                              })
+                        navigate(location.state ? location.state : '/')
                   })
                   .catch(error => {
                         console.log(error.message);
